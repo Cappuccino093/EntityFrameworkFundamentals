@@ -11,7 +11,8 @@ public record Category
 	[MaxLength(150)]
 	public required string Name { get; init; }
 
-	public required string Description { get; init; }
+	public string? Description { get; init; }
+	public int? Weight { get; init; }
 
-	public required virtual Task[] Tasks { get; init; }
+	public virtual Task[]? Tasks { get; init; }
 }

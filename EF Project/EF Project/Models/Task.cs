@@ -15,9 +15,9 @@ public record Task
 	[MaxLength(200)]
 	public required string Title { get; init; }
 	
-	public required string Description { get; init; }
-	public required Priority Priority { get; init; }
-	public required DateTime CreatedAt { get; init; }
+	public string? Description { get; init; }
+	public Priority? Priority { get; init; }
+	public DateTime CreatedAt { get; private init; } = DateTime.Now;
 
-	public required virtual Category Category { get; init; }
+	public virtual Category? Category { get; init; }
 }

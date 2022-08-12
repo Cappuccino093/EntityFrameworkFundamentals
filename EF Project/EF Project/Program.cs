@@ -13,7 +13,7 @@ app.MapGet("/", () => "Hello World!");
 
 app.MapGet("/ef-project", ([FromServices] EfProjectContext efProjectContext) =>
 {
-	_ = efProjectContext.Database.EnsureCreated();
+	efProjectContext.Database.EnsureCreated();
 	return Results.Ok($"Database in memory: {efProjectContext.Database.IsInMemory()}");
 });
 
