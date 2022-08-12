@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace EfProject.Models;
 
@@ -9,10 +11,12 @@ public record Category
 
 	[Required]
 	[MaxLength(150)]
-	public required string Name { get; init; }
+	public required string Name { get; set; }
 
-	public string? Description { get; init; }
-	public int? Weight { get; init; }
+	public string? Description { get; set; }
+	public int? Weight { get; set; }
 
-	public virtual Task[]? Tasks { get; init; }
+	[NotMapped]
+	[JsonIgnore]
+	public virtual Task[]? Tasks { get; set; }
 }

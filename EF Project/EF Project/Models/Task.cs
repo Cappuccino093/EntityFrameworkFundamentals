@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace EfProject.Models;
 
@@ -9,15 +10,17 @@ public record Task
 	public Guid Id { get; private init; } = Guid.NewGuid();
 
 	[ForeignKey("Category")]
-	public required Guid CategoryId { get; init; }
+	public required Guid CategoryId { get; set; }
 
 	[Required]
 	[MaxLength(200)]
-	public required string Title { get; init; }
-	
-	public string? Description { get; init; }
-	public Priority? Priority { get; init; }
+	public required string Title { get; set; }
+
+	public string? Description { get; set; }
+	public Priority? Priority { get; set; }
 	public DateTime CreatedAt { get; private init; } = DateTime.Now;
 
-	public virtual Category? Category { get; init; }
+	[NotMapped]
+	[JsonIgnore]
+	public virtual Category? Category { get; set; }
 }
